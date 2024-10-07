@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -49,6 +51,9 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
+  const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
+
   return (
     <>
       <p className="text-2xl">HELLO</p>
