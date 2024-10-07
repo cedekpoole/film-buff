@@ -1,7 +1,7 @@
 import Icon from "../assets/movie-buff.svg";
 import IconSmall from "../assets/icon-small.svg";
 
-export default function Navbar() {
+export default function Navbar({ movies }) {
   return (
     <nav className="bg-slate-900 p-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -23,7 +23,8 @@ export default function Navbar() {
           className="p-2 w-1/2 md:w-1/3 bg-gray-100 rounded-md"
         />
         <p className="text-gray-100 text-sm md:text-xl font-thin">
-          Found <span className="font-bold text-gray-500">X</span> Results
+          Found <span className="font-bold text-gray-500">{movies.length}</span>{" "}
+          Results
         </p>
       </div>
     </nav>
