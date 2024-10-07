@@ -7,7 +7,7 @@ export default function MovieAverages({ watched }) {
   const averageUserRating = average(watched.map((movie) => movie.userRating));
 
   return (
-    <div className="bg-slate-900 shadow-lg rounded-md p-4 flex flex-col">
+    <div className="bg-slate-800 shadow-lg rounded-md p-4 flex flex-col">
       <h2 className="text-lg font-bold mb-2 font-oswald">Averages</h2>
       <div className="flex flex-wrap gap-2">
         <p>Films Watched: {watched.length}</p>
