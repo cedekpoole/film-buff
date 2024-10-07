@@ -1,8 +1,10 @@
-export default function WatchList() {
+import MovieAverages from "./MovieAverages";
+
+export default function WatchList({ watched }) {
   return (
     <>
-      <div className="bg-white mx-auto">
-        <h1>WATCHLIST</h1>
+      <div className="bg-slate-900 mx-auto flex flex-col rounded">
+        <MovieAverages watched={watched} />
       </div>
     </>
   );

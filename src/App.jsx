@@ -50,9 +50,6 @@ const tempWatchedData = [
   },
 ];
 
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
@@ -63,7 +60,7 @@ export default function App() {
         <Navbar movies={movies} />
         <main className="container mx-auto p-4 flex">
           <MovieList movies={movies} />
-          <WatchList />
+          <WatchList watched={watched} />
         </main>
       </div>
     </>
