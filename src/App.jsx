@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navbar from "./components/Navbar";
 
 const tempMovieData = [
   {
@@ -56,7 +57,9 @@ export default function App() {
 
   return (
     <>
-      <p className="text-2xl">HELLO</p>
+      <div className="min-h-screen bg-slate-800 font-quattrocento">
+        <Navbar />
+      </div>
     </>
   );
 }
