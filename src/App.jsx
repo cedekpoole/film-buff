@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import MovieList from "./components/MovieList";
+import WatchList from "./components/WatchList";
 
 const tempMovieData = [
   {
@@ -57,8 +59,12 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-800 font-quattrocento">
+      <div className="min-h-screen bg-slate-800 text-gray-100 font-quattrocento">
         <Navbar movies={movies} />
+        <main className="container mx-auto p-4 flex">
+          <MovieList movies={movies} />
+          <WatchList />
+        </main>
       </div>
     </>
   );
