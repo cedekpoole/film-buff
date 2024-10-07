@@ -11,13 +11,20 @@ export default function MovieAverages({ watched }) {
   const averageUserRating = average(watched.map((movie) => movie.userRating));
 
   return (
-    <div className="bg-slate-800 shadow-lg rounded-md p-4 flex flex-col">
+    <div
+      className={`${
+        isOpen ? `p-4` : `p-2`
+      } bg-slate-800 shadow-lg rounded-md flex flex-col`}
+    >
       <div className="flex justify-between items-center">
-        {isOpen ? (
-          <h2 className="text-lg font-bold mb-2 font-oswald">Averages</h2>
-        ) : (
-          <div></div>
-        )}
+        <h2
+          className={`${
+            isOpen ? `text-lg font-bold mb-2` : `text-md font-normal`
+          } font-oswald`}
+        >
+          Averages
+        </h2>
+
         <button
           className="text-3xl px-1 rounded-full bg-slate-800 hover:bg-slate-700"
           onClick={() => setIsOpen((open) => !open)}
