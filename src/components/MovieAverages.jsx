@@ -8,7 +8,7 @@ export default function MovieAverages({ watched }) {
 
   return (
     <div className="bg-slate-900 shadow-lg rounded-md p-4 flex flex-col">
-      <h2 className="text-lg font-bold mt-2">Averages</h2>
+      <h2 className="text-lg font-bold mb-2 font-oswald">Averages</h2>
       <div className="flex flex-wrap gap-2">
         <p>Films Watched: {watched.length}</p>
         <p className="text-gray-300">IMDB Rating: {averageRating.toFixed(1)}</p>
