@@ -4,7 +4,7 @@ import WatchedCard from "./WatchedCard";
 export default function WatchList({ watched }) {
   return (
     <>
-      <div className="bg-slate-900 mx-auto flex flex-col rounded p-4">
+      <div className="bg-slate-900 mx-auto flex flex-col rounded p-4 w-full lg:w-1/2">
         <MovieAverages watched={watched} />
         <div className="flex flex-col">
           {watched.map((watchedMovie) => (
