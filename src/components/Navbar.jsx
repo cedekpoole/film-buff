@@ -20,7 +20,7 @@ export default function Navbar({ movies }) {
         <input
           type="text"
           placeholder="Search for movies..."
-          className="p-2 w-1/2 md:w-1/3 bg-gray-100 rounded-md"
+          className="p-2 w-1/2 md:w-1/3 bg-gray-100 text-gray-700 rounded-md"
         />
         <p className="text-gray-100 text-sm md:text-xl font-thin">
           Found <span className="font-bold text-gray-500">{movies.length}</span>{" "}
