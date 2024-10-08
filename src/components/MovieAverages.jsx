@@ -13,7 +13,7 @@ export default function MovieAverages({ watched }) {
   const averageUserRating = average(watched.map((movie) => movie.userRating));
 
   return (
-    <div className="p-4 bg-slate-800 shadow-lg rounded-md flex flex-col">
+    <div className="p-4 bg-slate-800 shadow-lg rounded-md flex flex-col mb-4">
       <div className="flex justify-between items-center">
         <h2 className="text-lg font-bold font-oswald">Movie Averages</h2>
         <MinimiseBtn isOpen={isOpen} setIsOpen={setIsOpen} />

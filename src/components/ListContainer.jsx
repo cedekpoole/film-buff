@@ -18,7 +18,7 @@ export default function MovieListContainer({
       {renderAverage && renderAverage(movies)}
 
       <div className="flex justify-between items-center">
-        <h2 className="font-oswald text-2xl p-4 pb-2">{title}</h2>
+        <h2 className="font-oswald text-2xl pb-2">{title}</h2>
         <MinimiseBtn isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <Collapse isOpen={isOpen}>
