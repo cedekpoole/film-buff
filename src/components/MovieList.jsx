@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MovieCard from "./MovieCard";
+import FilmCard from "./FilmCard";
 
 export default function MovieList({ movies }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -19,7 +19,7 @@ export default function MovieList({ movies }) {
         {isOpen && (
           <div className="flex flex-col gap-2">
             {movies.map((movie) => (
-              <MovieCard key={movie.imdbID} movie={movie} />
+              <FilmCard key={movie.imdbID} movie={movie} />
             ))}
           </div>
         )}

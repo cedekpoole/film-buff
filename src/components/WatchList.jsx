@@ -1,5 +1,5 @@
 import MovieAverages from "./MovieAverages";
-import WatchedCard from "./WatchedCard";
+import FilmCard from "./FilmCard ";
 
 export default function WatchList({ watched }) {
   return (
@@ -9,9 +9,10 @@ export default function WatchList({ watched }) {
         <h2 className="font-oswald text-2xl p-4 pb-2">Movies Watched</h2>
         <div>
           {watched.map((watchedMovie) => (
-            <WatchedCard
+            <FilmCard
               key={watchedMovie.imdbID}
               watchedMovie={watchedMovie}
+              isWatched={true}
             />
           ))}
         </div>
