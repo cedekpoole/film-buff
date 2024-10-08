@@ -24,7 +24,7 @@ export default function WatchList({ watched }) {
               isWatched={true}
             />
           ))}
-          <StarRating maxRating={10} />
+          <StarRating maxRating={10} gap={5} size={50} />
         </Collapse>
       </div>
     </>
