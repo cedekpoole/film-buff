@@ -32,6 +32,9 @@ export default function WatchList({ watched }) {
             className={`font-light`}
             onSetRating={setMovieRating}
           />
+          <p className="text-center text-gray-300">
+            Your rating: {movieRating}{" "}
+          </p>
         </Collapse>
       </div>
     </>
