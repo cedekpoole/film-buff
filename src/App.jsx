@@ -21,16 +21,22 @@ export default function App() {
             movies={watched}
             extraProps={{ isWatched: true }}
             renderAverage={(items) => <MovieAverages watched={items} />}
+            renderStarAverage={() => (
+              <div>
+                <StarRating
+                  maxRating={10}
+                  gap={5}
+                  size={50}
+                  className={`font-light`}
+                  onSetRating={setMovieRating}
+                />
+                <p className="text-center text-gray-300">
+                  Your rating: {movieRating}{" "}
+                </p>
+              </div>
+            )}
           />
         </main>
-        <StarRating
-          maxRating={10}
-          gap={5}
-          size={50}
-          className={`font-light`}
-          onSetRating={setMovieRating}
-        />
-        <p className="text-center text-gray-300">Your rating: {movieRating} </p>
       </div>
     </>
   );

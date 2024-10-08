@@ -8,6 +8,7 @@ export default function MovieListContainer({
   movies,
   extraProps,
   renderAverage,
+  renderStarAverage,
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -24,6 +25,7 @@ export default function MovieListContainer({
         {movies.map((movie) => (
           <FilmCard key={movie.imdbID} movie={movie} {...extraProps} />
         ))}
+        {renderStarAverage && renderStarAverage()}
       </Collapse>
     </div>
   );
