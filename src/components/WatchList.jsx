@@ -3,6 +3,7 @@ import MovieAverages from "./MovieAverages";
 import FilmCard from "./FilmCard";
 import MinimiseBtn from "./MinimiseBtn";
 import Collapse from "./Collapse";
+import StarRating from "./StarRating";
 
 export default function WatchList({ watched }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -23,6 +24,7 @@ export default function WatchList({ watched }) {
               isWatched={true}
             />
           ))}
+          <StarRating maxRating={10} />
         </Collapse>
       </div>
     </>
