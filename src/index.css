@@ -3,3 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  background-color: #1e293b; /* This matches Tailwind's 'bg-slate-800' */
+  min-height: 100%;
+  margin: 0;
+}
