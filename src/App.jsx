@@ -3,10 +3,12 @@ import { tempMovieData, tempWatchedData } from "./data";
 import Navbar from "./components/Navbar";
 import MovieAverages from "./components/MovieAverages";
 import MovieListContainer from "./components/ListContainer";
+import StarRating from "./components/StarRating";
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [movieRating, setMovieRating] = useState(0);
 
   return (
     <>
@@ -21,6 +23,14 @@ export default function App() {
             renderAverage={(items) => <MovieAverages watched={items} />}
           />
         </main>
+        <StarRating
+          maxRating={10}
+          gap={5}
+          size={50}
+          className={`font-light`}
+          onSetRating={setMovieRating}
+        />
+        <p className="text-center text-gray-300">Your rating: {movieRating} </p>
       </div>
     </>
   );
