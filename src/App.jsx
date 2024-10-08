@@ -12,9 +12,9 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-800 text-gray-100 font-quattrocento">
+      <div className="min-h-screen bg-slate-800 text-gray-100 font-quattrocento pt-20">
         <Navbar movies={movies} />
-        <main className="container mx-auto p-4 flex flex-col md:flex-row gap-2">
+        <main className="container mx-auto p-4 flex flex-col lg:flex-row gap-2">
           <MovieListContainer title="Results" movies={movies} />
           <MovieListContainer
             title="Movies Watched"

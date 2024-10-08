@@ -3,7 +3,9 @@ import IconSmall from "../assets/icon-small.svg";
 
 export default function Navbar({ movies }) {
   return (
-    <nav className="bg-slate-900 p-4">
+    <nav className="bg-slate-900 p-2 fixed top-0 w-full z-50 shadow-md">
+      {" "}
+      {/* Fixed Navbar */}
       <div className="container mx-auto flex items-center justify-between">
         <div>
           <img
