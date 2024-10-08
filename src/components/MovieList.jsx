@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilmCard from "./FilmCard";
+import Collapse from "./Collapse";
 
 export default function MovieList({ movies }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,13 +17,11 @@ export default function MovieList({ movies }) {
             {isOpen ? `-` : `+`}
           </button>
         </div>
-        {isOpen && (
-          <div className="flex flex-col gap-2">
-            {movies.map((movie) => (
-              <FilmCard key={movie.imdbID} movie={movie} />
-            ))}
-          </div>
-        )}
+        <Collapse isOpen={isOpen}>
+          {movies.map((movie) => (
+            <FilmCard key={movie.imdbID} movie={movie} />
+          ))}
+        </Collapse>
       </div>
     </>
   );

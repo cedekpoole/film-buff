@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Collapse from "./Collapse";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -32,7 +33,7 @@ export default function MovieAverages({ watched }) {
           {isOpen ? `-` : `+`}
         </button>
       </div>
-      {isOpen && (
+      <Collapse isOpen={isOpen}>
         <div className="flex flex-wrap gap-2">
           <p>Films Watched: {watched.length}</p>
           <p className="text-gray-300">
@@ -45,7 +46,7 @@ export default function MovieAverages({ watched }) {
             User Rating: {averageUserRating.toFixed(1)}
           </p>
         </div>
-      )}
+      </Collapse>
     </div>
   );
 }

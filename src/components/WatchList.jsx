@@ -1,5 +1,5 @@
 import MovieAverages from "./MovieAverages";
-import FilmCard from "./FilmCard ";
+import FilmCard from "./FilmCard";
 
 export default function WatchList({ watched }) {
   return (
@@ -11,7 +11,7 @@ export default function WatchList({ watched }) {
           {watched.map((watchedMovie) => (
             <FilmCard
               key={watchedMovie.imdbID}
-              watchedMovie={watchedMovie}
+              movie={watchedMovie}
               isWatched={true}
             />
           ))}
