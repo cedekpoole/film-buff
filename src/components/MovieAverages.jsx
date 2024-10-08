@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Collapse from "./Collapse";
+import MinimiseBtn from "./MinimiseBtn";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -12,38 +13,28 @@ export default function MovieAverages({ watched }) {
   const averageUserRating = average(watched.map((movie) => movie.userRating));
 
   return (
-    <div
-      className={`${
-        isOpen ? `p-4` : `p-2`
-      } bg-slate-800 shadow-lg rounded-md flex flex-col`}
-    >
+    <div className="p-4 bg-slate-800 shadow-lg rounded-md flex flex-col">
       <div className="flex justify-between items-center">
-        <h2
-          className={`${
-            isOpen ? `text-lg font-bold mb-2` : `text-md font-normal`
-          } font-oswald`}
-        >
-          Averages
-        </h2>
-
-        <button
-          className="text-3xl px-1 rounded-full bg-slate-800 hover:bg-slate-700"
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          {isOpen ? `-` : `+`}
-        </button>
+        <h2 className="text-lg font-bold font-oswald">Movie Averages</h2>
+        <MinimiseBtn isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <Collapse isOpen={isOpen}>
         <div className="flex flex-wrap gap-2">
-          <p>Films Watched: {watched.length}</p>
           <p className="text-gray-300">
-            IMDB Rating: {averageRating.toFixed(1)}
+            Films Watched: <span className="font-bold">{watched.length}</span>
           </p>
           <p className="text-gray-300">
-            Runtime: {averageRuntime.toFixed(0)} minutes
+            IMDB Rating:{" "}
+            <span className="font-bold">{averageRating.toFixed(1)}</span>
           </p>
           <p className="text-gray-300">
-            User Rating: {averageUserRating.toFixed(1)}
+            Runtime:{" "}
+            <span className="font-bold">{averageRuntime.toFixed(0)} </span>
+            minutes
+          </p>
+          <p className="text-gray-300">
+            User Rating:{" "}
+            <span className="font-bold">{averageUserRating.toFixed(1)} </span>
           </p>
         </div>
       </Collapse>
