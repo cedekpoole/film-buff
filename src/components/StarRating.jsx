@@ -5,29 +5,40 @@ export default function StarRating({
   color = "#EFD54A",
   size = 24,
   gap = 5,
+  defaultRating = 5,
+  className = "",
+  onSetRating,
 }) {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
+
+  function handleRating(rating) {
+    setRating(rating);
+    onSetRating(rating);
+  }
   return (
-    <div className={`flex items-center gap-3`}>
+    <div
+      className={`flex items-center gap-3 font-bold font-oswald ${className}`}
+    >
       <div className="flex" style={{ gap: `${gap}px` }}>
         {/* <!-- This example requires Tailwind CSS v3.0+ --> */}
         {[...Array(maxRating)].map((_, i) => (
           <Star
             key={i}
-            onClick={() => setRating(i + 1)}
+            onClick={() => handleRating(i + 1)}
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             onHoverIn={() => setTempRating(i + 1)}
             onHoverOut={() => setTempRating(0)}
             size={size}
             color={color}
             gap={gap}
+            onSetRating={onSetRating}
           />
         ))}
       </div>
       <p
         style={{ fontSize: size / 1.5 }}
-        className={`m-0 leading-none font-bold font-oswald text-[${color}]`}
+        className={`m-0 leading-none text-[${color}]`}
       >
         {tempRating || rating || ""}
       </p>

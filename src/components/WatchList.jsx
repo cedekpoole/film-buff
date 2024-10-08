@@ -7,6 +7,7 @@ import StarRating from "./StarRating";
 
 export default function WatchList({ watched }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [movieRating, setMovieRating] = useState(0);
 
   return (
     <>
@@ -24,7 +25,13 @@ export default function WatchList({ watched }) {
               isWatched={true}
             />
           ))}
-          <StarRating maxRating={10} gap={5} size={50} />
+          <StarRating
+            maxRating={10}
+            gap={5}
+            size={50}
+            className={`font-light`}
+            onSetRating={setMovieRating}
+          />
         </Collapse>
       </div>
     </>
