@@ -2,6 +2,15 @@ import { useState } from "react";
 import MinimiseBtn from "./MinimiseBtn";
 import Collapse from "./Collapse";
 import FilmCard from "./FilmCard";
+import PropTypes from "prop-types";
+
+MovieListContainer.PropTypes = {
+  title: PropTypes.string,
+  movies: PropTypes.array,
+  extraProps: PropTypes.object,
+  renderAverage: PropTypes.func,
+  renderStarAverage: PropTypes.func,
+};
 
 export default function MovieListContainer({
   title,

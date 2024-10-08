@@ -1,3 +1,10 @@
+import PropTypes from "prop-types";
+
+FilmCard.propTypes = {
+  movie: PropTypes.object,
+  isWatched: PropTypes.bool,
+};
+
 export default function FilmCard({ movie, isWatched }) {
   return (
     <div className="bg-slate-800 shadow-md rounded-md p-4 flex gap-3 hover:bg-slate-700 cursor-pointer">

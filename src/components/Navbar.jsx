@@ -1,5 +1,10 @@
 import Icon from "../assets/movie-buff.svg";
 import IconSmall from "../assets/icon-small.svg";
+import PropTypes from "prop-types";
+
+Navbar.propTypes = {
+  movies: PropTypes.array,
+};
 
 export default function Navbar({ movies }) {
   return (
