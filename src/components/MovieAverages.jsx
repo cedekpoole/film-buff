@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Collapse from "./Collapse";
-import MinimiseBtn from "./MinimiseBtn";
+import Collapse from "./UI/Collapse";
+import MinimiseBtn from "./UI/MinimiseBtn";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);

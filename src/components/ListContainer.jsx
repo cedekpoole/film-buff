@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MinimiseBtn from "./MinimiseBtn";
-import Collapse from "./Collapse";
+import MinimiseBtn from "./UI/MinimiseBtn";
+import Collapse from "./UI/Collapse";
 import FilmCard from "./FilmCard";
 import PropTypes from "prop-types";
 
