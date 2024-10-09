@@ -4,7 +4,7 @@ import Collapse from "./UI/Collapse";
 import FilmCard from "./FilmCard";
 import PropTypes from "prop-types";
 
-MovieListContainer.PropTypes = {
+MovieListContainer.propTypes = {
   title: PropTypes.string,
   movies: PropTypes.array,
   extraProps: PropTypes.object,
