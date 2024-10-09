@@ -3,14 +3,18 @@ import Collapse from "./UI/Collapse";
 import MinimiseBtn from "./UI/MinimiseBtn";
 
 const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+  arr.length > 0
+    ? arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
+    : 0;
 
 export default function MovieAverages({ watched }) {
   const [isOpen, setIsOpen] = useState(true);
 
-  const averageRating = average(watched.map((movie) => movie.imdbRating));
-  const averageRuntime = average(watched.map((movie) => movie.runtime));
-  const averageUserRating = average(watched.map((movie) => movie.userRating));
+  const averageRating = average(watched.map((movie) => movie.imdbRating || 0));
+  const averageRuntime = average(watched.map((movie) => movie.runtime || 0));
+  const averageUserRating = average(
+    watched.map((movie) => movie.userRating || 0)
+  );
 
   return (
     <div className="p-4 bg-slate-800 shadow-lg rounded-md flex flex-col mb-4">
