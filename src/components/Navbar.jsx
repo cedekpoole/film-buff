@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Icon from "../assets/movie-buff.svg";
 import IconSmall from "../assets/icon-small.svg";
 import PropTypes from "prop-types";
