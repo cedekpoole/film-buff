@@ -7,7 +7,7 @@ FilmCard.propTypes = {
 
 export default function FilmCard({ movie, isWatched }) {
   return (
-    <div className="bg-slate-800 shadow-md rounded-md p-4 flex gap-3 hover:bg-slate-700 cursor-pointer">
+    <div className="bg-slate-800 shadow-md rounded-md p-4 flex gap-3 hover:bg-slate-700 cursor-pointer min-h-40">
       <img src={movie.Poster} alt={movie.Title} className="w-1/6 rounded-md" />
       <div className="">
         <h2 className="text-lg font-bold mt-2">{movie.Title}</h2>
