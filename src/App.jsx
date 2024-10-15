@@ -1,14 +1,23 @@
-import { useState } from "react";
-import { tempMovieData, tempWatchedData } from "./data";
+import { useEffect, useState } from "react";
+import { tempWatchedData } from "./data";
 import Navbar from "./components/Navbar";
 import MovieAverages from "./components/MovieAverages";
 import MovieListContainer from "./components/ListContainer";
 import StarRating from "./components/StarRating";
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [movieRating, setMovieRating] = useState(0);
+
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+    const movieTitle = "interstellar";
+
+    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${movieTitle}`)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.Search || []));
+  }, []);
 
   return (
     <>
