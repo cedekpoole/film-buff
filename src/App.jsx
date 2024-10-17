@@ -3,7 +3,6 @@ import { tempWatchedData } from "./data";
 import Navbar from "./components/Navbar";
 import MovieAverages from "./components/MovieAverages";
 import MovieListContainer from "./components/ListContainer";
-import StarRating from "./components/StarRating";
 import MovieDetails from "./components/MovieDetails";
 
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -68,6 +67,8 @@ export default function App() {
             <MovieDetails
               selectedID={selectedID}
               onCloseDetails={handleCloseDetails}
+              movieRating={movieRating}
+              setMovieRating={setMovieRating}
             />
           ) : (
             <MovieListContainer
@@ -75,20 +76,6 @@ export default function App() {
               movies={watched}
               extraProps={{ isWatched: true }}
               renderAverage={(items) => <MovieAverages watched={items} />}
-              renderStarAverage={() => (
-                <>
-                  <StarRating
-                    maxRating={10}
-                    gap={5}
-                    size={50}
-                    className={`font-light`}
-                    onSetRating={setMovieRating}
-                  />
-                  <p className="text-center text-gray-300">
-                    Your rating: {movieRating}{" "}
-                  </p>
-                </>
-              )}
             />
           )}
         </main>

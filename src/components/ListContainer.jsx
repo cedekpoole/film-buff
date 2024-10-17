@@ -21,7 +21,6 @@ export default function MovieListContainer({
   movies,
   extraProps,
   renderAverage,
-  renderStarAverage,
   isLoading,
   error,
   onSelectedID,
@@ -49,7 +48,6 @@ export default function MovieListContainer({
             />
           ))}
         {error && <ErrorMsg message={error} />}
-        {renderStarAverage && renderStarAverage()}
       </Collapse>
     </div>
   );
