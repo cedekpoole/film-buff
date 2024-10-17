@@ -5,9 +5,12 @@ FilmCard.propTypes = {
   isWatched: PropTypes.bool,
 };
 
-export default function FilmCard({ movie, isWatched }) {
+export default function FilmCard({ movie, isWatched, onSelectedID }) {
   return (
-    <div className="bg-slate-800 shadow-md rounded-md p-4 flex gap-3 hover:bg-slate-700 cursor-pointer min-h-40">
+    <div
+      className="bg-slate-800 shadow-md rounded-md p-4 flex gap-3 hover:bg-slate-700 cursor-pointer min-h-40"
+      onClick={() => onSelectedID(movie.imdbID)}
+    >
       <img src={movie.Poster} alt={movie.Title} className="w-24 rounded-md" />
       <div className="">
         <h2 className="text-lg font-bold mt-2">{movie.Title}</h2>

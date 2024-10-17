@@ -24,6 +24,7 @@ export default function MovieListContainer({
   renderStarAverage,
   isLoading,
   error,
+  onSelectedID,
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -40,7 +41,12 @@ export default function MovieListContainer({
         {!isLoading &&
           !error &&
           movies.map((movie) => (
-            <FilmCard key={movie.imdbID} movie={movie} {...extraProps} />
+            <FilmCard
+              key={movie.imdbID}
+              movie={movie}
+              onSelectedID={onSelectedID}
+              {...extraProps}
+            />
           ))}
         {error && <ErrorMsg message={error} />}
         {renderStarAverage && renderStarAverage()}

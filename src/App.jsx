@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import MovieAverages from "./components/MovieAverages";
 import MovieListContainer from "./components/ListContainer";
 import StarRating from "./components/StarRating";
+import MovieDetails from "./components/MovieDetails";
 
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
@@ -14,6 +15,12 @@ export default function App() {
   const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedID, setSelectedID] = useState(null);
+
+  function handleSelectedID(id) {
+    setSelectedID(id);
+    console.log("Selected ID: ", id);
+  }
 
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
@@ -52,27 +59,32 @@ export default function App() {
             movies={movies}
             isLoading={isLoading}
             error={error}
+            onSelectedID={handleSelectedID}
           />
-          <MovieListContainer
-            title="Movies Watched"
-            movies={watched}
-            extraProps={{ isWatched: true }}
-            renderAverage={(items) => <MovieAverages watched={items} />}
-            renderStarAverage={() => (
-              <>
-                <StarRating
-                  maxRating={10}
-                  gap={5}
-                  size={50}
-                  className={`font-light`}
-                  onSetRating={setMovieRating}
-                />
-                <p className="text-center text-gray-300">
-                  Your rating: {movieRating}{" "}
-                </p>
-              </>
-            )}
-          />
+          {selectedID ? (
+            <MovieDetails selectedID={selectedID} />
+          ) : (
+            <MovieListContainer
+              title="Movies Watched"
+              movies={watched}
+              extraProps={{ isWatched: true }}
+              renderAverage={(items) => <MovieAverages watched={items} />}
+              renderStarAverage={() => (
+                <>
+                  <StarRating
+                    maxRating={10}
+                    gap={5}
+                    size={50}
+                    className={`font-light`}
+                    onSetRating={setMovieRating}
+                  />
+                  <p className="text-center text-gray-300">
+                    Your rating: {movieRating}{" "}
+                  </p>
+                </>
+              )}
+            />
+          )}
         </main>
       </div>
     </>
