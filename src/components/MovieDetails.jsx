@@ -105,7 +105,7 @@ export default function MovieDetails({
               Your rating: {movieRating}{" "}
             </p>
             <button
-              className="bg-green-500 text-white p-2 rounded-md mt-4 font-bold"
+              className="bg-slate-800 text-white p-2 rounded-md mt-4 hover:bg-slate-700"
               onClick={() => onAddToWatched(movie)}
             >
               Add to Watched List
