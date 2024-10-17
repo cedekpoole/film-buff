@@ -25,6 +25,11 @@ export default function App() {
   }
 
   function handleAddToWatched(movie) {
+    const isAlreadyWatched = watched.some(
+      (item) => item.imdbID === movie.imdbID
+    );
+    setSelectedID(null);
+    if (isAlreadyWatched) return;
     setWatched((watched) => [...watched, movie]);
   }
 
