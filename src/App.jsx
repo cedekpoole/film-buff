@@ -18,7 +18,7 @@ export default function App() {
   const [selectedID, setSelectedID] = useState(null);
 
   function handleSelectedID(id) {
-    setSelectedID(id);
+    setSelectedID((selectedID) => (id === selectedID ? null : id));
   }
 
   function handleCloseDetails() {
