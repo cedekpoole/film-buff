@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ErrorMsg from "./UI/ErrorMsg";
 import StarRating from "./UI/StarRating";
+import Loader from "./UI/Loader";
 
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
@@ -12,6 +13,7 @@ export default function MovieDetails({
 }) {
   const [error, setError] = useState("");
   const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     Title: title,
@@ -29,6 +31,7 @@ export default function MovieDetails({
     async function getMovieDetails() {
       try {
         setError("");
+        setIsLoading(true);
         const res = await fetch(
           `https://www.omdbapi.com/?apikey=${apiKey}&i=${selectedID}`
         );
@@ -39,6 +42,8 @@ export default function MovieDetails({
       } catch (err) {
         console.log(err);
         setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     if (selectedID) getMovieDetails();
@@ -59,45 +64,49 @@ export default function MovieDetails({
           Close Details
         </button>
       </div>
-      <div className="flex gap-4 mt-6">
-        <img src={poster} alt={title} className="w-48 rounded-md" />
-        <div>
-          <p className="text-gray-300">
-            <span className="font-bold">Released:</span> {released}
-          </p>
-          <p className="text-gray-300">
-            <span className="font-bold">Genre:</span> {genre}
-          </p>
-          <p className="text-gray-300">
-            <span className="font-bold">Director:</span> {director}
-          </p>
-          <p className="text-gray-300">
-            <span className="font-bold">Actors:</span> {actors}
-          </p>
-          <p className="text-gray-300">
-            <span className="font-bold">Runtime:</span> {runtime}
-          </p>
-          <p className="text-gray-300">
-            <span className="font-bold">IMDB Rating:</span> {imdbRating}
-          </p>
-        </div>
-      </div>
-      <p className="text-gray-300 bg-slate-800 p-4 my-4 rounded">
-        <span className="font-bold">Plot:</span> {plot}
-      </p>
-      <div className="flex flex-col items-center">
-        <StarRating
-          maxRating={10}
-          gap={4}
-          size={30}
-          className={`font-light`}
-          onSetRating={setMovieRating}
-        />
-        <p className="text-center text-gray-300 mt-2">
-          Your rating: {movieRating}{" "}
-        </p>
-        <div />
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="flex gap-4 mt-6">
+            <img src={poster} alt={title} className="w-48 rounded-md" />
+            <div>
+              <p className="text-gray-300">
+                <span className="font-bold">Released:</span> {released}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-bold">Genre:</span> {genre}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-bold">Director:</span> {director}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-bold">Actors:</span> {actors}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-bold">Runtime:</span> {runtime}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-bold">IMDB Rating:</span> {imdbRating}
+              </p>
+            </div>
+          </div>
+          <p className="text-gray-300 bg-slate-800 p-4 my-4 rounded">{plot}</p>
+          <div className="flex flex-col items-center">
+            <StarRating
+              maxRating={10}
+              gap={4}
+              size={30}
+              className={`font-light`}
+              onSetRating={setMovieRating}
+            />
+            <p className="text-center text-gray-300 mt-2">
+              Your rating: {movieRating}{" "}
+            </p>
+            <div />
+          </div>
+        </>
+      )}
     </div>
   );
 }
