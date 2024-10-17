@@ -4,6 +4,7 @@ import Collapse from "./UI/Collapse";
 import FilmCard from "./FilmCard";
 import PropTypes from "prop-types";
 import Loader from "./UI/Loader";
+import ErrorMsg from "./UI/ErrorMsg";
 
 MovieListContainer.propTypes = {
   title: PropTypes.string,
@@ -12,6 +13,7 @@ MovieListContainer.propTypes = {
   renderAverage: PropTypes.func,
   renderStarAverage: PropTypes.func,
   isLoading: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 export default function MovieListContainer({
@@ -21,6 +23,7 @@ export default function MovieListContainer({
   renderAverage,
   renderStarAverage,
   isLoading,
+  error,
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -34,13 +37,13 @@ export default function MovieListContainer({
         <MinimiseBtn isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <Collapse isOpen={isOpen}>
-        {isLoading ? (
-          <Loader />
-        ) : (
+        {isLoading && <Loader />}
+        {!isLoading &&
+          !error &&
           movies.map((movie) => (
             <FilmCard key={movie.imdbID} movie={movie} {...extraProps} />
-          ))
-        )}
+          ))}
+        {error && <ErrorMsg message={error} />}
         {renderStarAverage && renderStarAverage()}
       </Collapse>
     </div>

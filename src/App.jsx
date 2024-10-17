@@ -13,17 +13,28 @@ export default function App() {
   const [movieRating, setMovieRating] = useState(0);
   const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
     async function fetchMovies() {
-      setIsLoading(true);
-      const res = await fetch(
-        `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`
-      );
-      const data = await res.json();
-      if (data.Search) setMovies(data.Search);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        setError("");
+        const res = await fetch(
+          `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`
+        );
+        if (!res.ok) throw new Error("Could not retrieve movies");
+
+        const data = await res.json();
+        if (data.Response === "False") throw new Error("Movie Not Found");
+
+        setMovies(data.Search);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
     if (title) {
       fetchMovies();
@@ -39,6 +50,7 @@ export default function App() {
             title="Results"
             movies={movies}
             isLoading={isLoading}
+            error={error}
           />
           <MovieListContainer
             title="Movies Watched"
