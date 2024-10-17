@@ -27,7 +27,8 @@ export default function App() {
         if (!res.ok) throw new Error("Could not retrieve movies");
 
         const data = await res.json();
-        if (data.Response === "False") throw new Error("Movie Not Found");
+
+        if (data.Response === "False") throw new Error(data.Error);
 
         setMovies(data.Search);
       } catch (err) {
