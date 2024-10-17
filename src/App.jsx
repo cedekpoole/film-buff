@@ -24,6 +24,10 @@ export default function App() {
     setSelectedID(null);
   }
 
+  function handleAddToWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
+
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
     async function fetchMovies() {
@@ -69,6 +73,7 @@ export default function App() {
               onCloseDetails={handleCloseDetails}
               movieRating={movieRating}
               setMovieRating={setMovieRating}
+              onAddToWatched={handleAddToWatched}
             />
           ) : (
             <MovieListContainer

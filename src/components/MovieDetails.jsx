@@ -10,6 +10,7 @@ export default function MovieDetails({
   onCloseDetails,
   movieRating,
   setMovieRating,
+  onAddToWatched,
 }) {
   const [error, setError] = useState("");
   const [movie, setMovie] = useState({});
@@ -103,6 +104,12 @@ export default function MovieDetails({
             <p className="text-center text-gray-300 mt-2">
               Your rating: {movieRating}{" "}
             </p>
+            <button
+              className="bg-green-500 text-white p-2 rounded-md mt-4 font-bold"
+              onClick={() => onAddToWatched(movie)}
+            >
+              Add to Watched List
+            </button>
             <div />
           </div>
         </>
