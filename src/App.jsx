@@ -19,7 +19,10 @@ export default function App() {
 
   function handleSelectedID(id) {
     setSelectedID(id);
-    console.log("Selected ID: ", id);
+  }
+
+  function handleCloseDetails() {
+    setSelectedID(null);
   }
 
   // useEffect allows us to safely write side effects (like data fetching)
@@ -62,7 +65,10 @@ export default function App() {
             onSelectedID={handleSelectedID}
           />
           {selectedID ? (
-            <MovieDetails selectedID={selectedID} />
+            <MovieDetails
+              selectedID={selectedID}
+              onCloseDetails={handleCloseDetails}
+            />
           ) : (
             <MovieListContainer
               title="Movies Watched"
