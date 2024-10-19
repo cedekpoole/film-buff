@@ -24,6 +24,7 @@ export default function MovieListContainer({
   isLoading,
   error,
   onSelectedID,
+  onDelete,
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -44,6 +45,7 @@ export default function MovieListContainer({
               key={movie.imdbID}
               movie={movie}
               onSelectedID={onSelectedID}
+              onDelete={onDelete}
               {...extraProps}
             />
           ))}

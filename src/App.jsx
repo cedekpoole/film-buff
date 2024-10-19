@@ -28,6 +28,10 @@ export default function App() {
     setWatched((watched) => [...watched, movie]);
   }
 
+  function handleDelete(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
+
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
     async function fetchMovies() {
@@ -80,6 +84,7 @@ export default function App() {
               movies={watched}
               extraProps={{ isWatched: true }}
               renderAverage={(items) => <MovieAverages watched={items} />}
+              onDelete={handleDelete}
             />
           )}
         </main>
