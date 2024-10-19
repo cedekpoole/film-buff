@@ -52,7 +52,6 @@ export default function MovieDetails({
       try {
         setError("");
         setIsLoading(true);
-        setMovieRating(0);
         const res = await fetch(
           `https://www.omdbapi.com/?apikey=${apiKey}&i=${selectedID}`
         );
@@ -70,6 +69,15 @@ export default function MovieDetails({
     }
     if (selectedID) getMovieDetails();
   }, [selectedID]);
+
+  useEffect(() => {
+    if (!Title) return;
+    document.title = `Movie | ${Title}`;
+
+    return () => {
+      document.title = "MovieBuff";
+    };
+  }, [Title]);
 
   return (
     <div className="bg-slate-900 mx-auto flex flex-col rounded p-4 w-full lg:w-1/2">
