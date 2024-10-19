@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 FilmCard.propTypes = {
   movie: PropTypes.object,
   isWatched: PropTypes.bool,
+  onSelectedID: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default function FilmCard({ movie, isWatched, onSelectedID, onDelete }) {

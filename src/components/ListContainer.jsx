@@ -11,7 +11,6 @@ MovieListContainer.propTypes = {
   movies: PropTypes.array,
   extraProps: PropTypes.object,
   renderAverage: PropTypes.func,
-  renderStarAverage: PropTypes.func,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
 };
