@@ -8,13 +8,13 @@ const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 export default function MovieDetails({
   selectedID,
   onCloseDetails,
-  movieRating,
-  setMovieRating,
   onAddToWatched,
+  watched,
 }) {
   const [error, setError] = useState("");
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [movieRating, setMovieRating] = useState(0);
 
   const {
     Title,
@@ -36,15 +36,23 @@ export default function MovieDetails({
       Poster,
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ")[0]),
+      userRating: movieRating,
     };
     onAddToWatched(newWatchedMovie);
   }
+
+  const isWatched = watched.some((movie) => movie.imdbID === selectedID);
+
+  const watchedMovieRating = watched.find(
+    (movie) => movie.imdbID === selectedID
+  )?.userRating;
 
   useEffect(() => {
     async function getMovieDetails() {
       try {
         setError("");
         setIsLoading(true);
+        setMovieRating(0);
         const res = await fetch(
           `https://www.omdbapi.com/?apikey=${apiKey}&i=${selectedID}`
         );
@@ -107,22 +115,33 @@ export default function MovieDetails({
           </div>
           <p className="text-gray-300 bg-slate-800 p-4 my-4 rounded">{plot}</p>
           <div className="flex flex-col items-center">
-            <StarRating
-              maxRating={10}
-              gap={4}
-              size={30}
-              className={`font-light`}
-              onSetRating={setMovieRating}
-            />
-            <p className="text-center text-gray-300 mt-2">
-              Your rating: {movieRating}{" "}
-            </p>
-            <button
-              className="bg-slate-800 text-white p-2 rounded-md mt-4 hover:bg-slate-700"
-              onClick={() => handleAdd()}
-            >
-              Add to Watched List
-            </button>
+            {!isWatched ? (
+              <>
+                <StarRating
+                  maxRating={10}
+                  gap={4}
+                  size={30}
+                  className={`font-light`}
+                  onSetRating={setMovieRating}
+                />
+
+                {movieRating > 0 && (
+                  <button
+                    className="bg-slate-800 text-white p-2 rounded-md mt-4 hover:bg-slate-700"
+                    onClick={() => handleAdd()}
+                  >
+                    Add to Watched List
+                  </button>
+                )}
+              </>
+            ) : (
+              <p className="text-gray-300 bg-slate-800 p-4 my-4 rounded">
+                Already Rated. Your rating:{" "}
+                <span className="text-xl font-bold text-[#EFD54A]">
+                  {watchedMovieRating}
+                </span>
+              </p>
+            )}
             <div />
           </div>
         </>

@@ -10,7 +10,6 @@ const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const [movieRating, setMovieRating] = useState(0);
   const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,11 +24,7 @@ export default function App() {
   }
 
   function handleAddToWatched(movie) {
-    const isAlreadyWatched = watched.some(
-      (item) => item.imdbID === movie.imdbID
-    );
-    setSelectedID(null);
-    if (isAlreadyWatched) return;
+    handleCloseDetails();
     setWatched((watched) => [...watched, movie]);
   }
 
@@ -76,9 +71,8 @@ export default function App() {
             <MovieDetails
               selectedID={selectedID}
               onCloseDetails={handleCloseDetails}
-              movieRating={movieRating}
-              setMovieRating={setMovieRating}
               onAddToWatched={handleAddToWatched}
+              watched={watched}
             />
           ) : (
             <MovieListContainer
