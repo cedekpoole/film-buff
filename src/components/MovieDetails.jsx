@@ -70,7 +70,6 @@ export default function MovieDetails({
         if (!res.ok) throw new Error("Could not retrieve movie details");
 
         const data = await res.json();
-        console.log(data);
         setMovie(data);
       } catch (err) {
         console.log(err);
