@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { tempWatchedData } from "./data";
+
 import Navbar from "./components/Navbar";
 import MovieAverages from "./components/MovieAverages";
 import MovieListContainer from "./components/ListContainer";
@@ -9,7 +9,7 @@ const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
   const [movieRating, setMovieRating] = useState(0);
   const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);

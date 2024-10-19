@@ -17,16 +17,28 @@ export default function MovieDetails({
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    Title: title,
-    Poster: poster,
+    Title,
+    Poster,
     imdbRating,
+    Year,
     Runtime: runtime,
     Plot: plot,
     Genre: genre,
     Director: director,
     Actors: actors,
-    Released: released,
   } = movie;
+
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedID,
+      Title,
+      Year,
+      Poster,
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split(" ")[0]),
+    };
+    onAddToWatched(newWatchedMovie);
+  }
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -39,6 +51,7 @@ export default function MovieDetails({
         if (!res.ok) throw new Error("Could not retrieve movie details");
 
         const data = await res.json();
+        console.log(data);
         setMovie(data);
       } catch (err) {
         console.log(err);
@@ -54,7 +67,7 @@ export default function MovieDetails({
     <div className="bg-slate-900 mx-auto flex flex-col rounded p-4 w-full lg:w-1/2">
       <div className="flex justify-between items-center">
         {!error ? (
-          <h3 className="text-2xl font-oswald">{title}</h3>
+          <h3 className="text-2xl font-oswald">{Title}</h3>
         ) : (
           <ErrorMsg message={error} />
         )}
@@ -70,10 +83,10 @@ export default function MovieDetails({
       ) : (
         <>
           <div className="flex gap-4 mt-6">
-            <img src={poster} alt={title} className="w-48 rounded-md" />
+            <img src={Poster} alt={Title} className="w-48 rounded-md" />
             <div>
               <p className="text-gray-300">
-                <span className="font-bold">Released:</span> {released}
+                <span className="font-bold">Released:</span> {Year}
               </p>
               <p className="text-gray-300">
                 <span className="font-bold">Genre:</span> {genre}
@@ -106,7 +119,7 @@ export default function MovieDetails({
             </p>
             <button
               className="bg-slate-800 text-white p-2 rounded-md mt-4 hover:bg-slate-700"
-              onClick={() => onAddToWatched(movie)}
+              onClick={() => handleAdd()}
             >
               Add to Watched List
             </button>
