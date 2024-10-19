@@ -48,6 +48,18 @@ export default function MovieDetails({
   )?.userRating;
 
   useEffect(() => {
+    function callback(e) {
+      if (e.code === "Escape" || e.code === "Backspace") onCloseDetails();
+    }
+
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, [onCloseDetails]);
+
+  useEffect(() => {
     async function getMovieDetails() {
       try {
         setError("");

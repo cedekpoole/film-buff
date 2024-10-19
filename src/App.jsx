@@ -34,6 +34,7 @@ export default function App() {
 
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
+    // AbortController allows us to cancel fetch requests when the component re-renders or unmounts
     const controller = new AbortController();
     const { signal } = controller;
 
@@ -54,8 +55,8 @@ export default function App() {
         setMovies(data.Search);
         setError("");
       } catch (err) {
-        console.error(err.message);
         if (err.name !== "AbortError") {
+          console.log(err.message);
           setError(err.message);
         }
       } finally {
@@ -63,6 +64,7 @@ export default function App() {
       }
     }
     if (title) {
+      handleCloseDetails();
       fetchMovies();
     }
 
