@@ -34,12 +34,16 @@ export default function App() {
 
   // useEffect allows us to safely write side effects (like data fetching)
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
     async function fetchMovies() {
       try {
         setIsLoading(true);
         setError("");
         const res = await fetch(
-          `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`
+          `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`,
+          signal
         );
         if (!res.ok) throw new Error("Could not retrieve movies");
 
@@ -48,8 +52,12 @@ export default function App() {
         if (data.Response === "False") throw new Error(data.Error);
 
         setMovies(data.Search);
+        setError("");
       } catch (err) {
-        setError(err.message);
+        console.error(err.message);
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -57,6 +65,10 @@ export default function App() {
     if (title) {
       fetchMovies();
     }
+
+    return function () {
+      controller.abort();
+    };
   }, [title]);
 
   return (
