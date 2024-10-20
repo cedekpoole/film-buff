@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ErrorMsg from "./UI/ErrorMsg";
 import StarRating from "./UI/StarRating";
 import Loader from "./UI/Loader";
+import { useKey } from "../hooks/useKey";
 
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
@@ -15,6 +16,7 @@ export default function MovieDetails({
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [movieRating, setMovieRating] = useState(0);
+  useKey("Escape", onCloseDetails);
 
   const {
     Title,
@@ -46,18 +48,6 @@ export default function MovieDetails({
   const watchedMovieRating = watched.find(
     (movie) => movie.imdbID === selectedID
   )?.userRating;
-
-  useEffect(() => {
-    function callback(e) {
-      if (e.code === "Escape" || e.code === "Backspace") onCloseDetails();
-    }
-
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, [onCloseDetails]);
 
   useEffect(() => {
     async function getMovieDetails() {
