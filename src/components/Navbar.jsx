@@ -1,7 +1,8 @@
 import Icon from "../assets/movie-buff.svg";
 import IconSmall from "../assets/icon-small.svg";
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useKey } from "../hooks/useKey";
 
 Navbar.propTypes = {
   movies: PropTypes.array,
@@ -10,21 +11,13 @@ Navbar.propTypes = {
 
 export default function Navbar({ movies, setTitle }) {
   const inputEl = useRef(null);
+  useKey("Escape", () => inputEl.current.blur());
+  useKey("Enter", () => inputEl.current.focus());
 
   // handle Enter key press
   const handleKeyPress = (e) => {
     if (e.key === "Enter") setTitle(e.target.value.trim());
   };
-
-  useEffect(() => {
-    function callback(e) {
-      if (e.code === "Enter") {
-        inputEl.current.focus();
-      }
-    }
-    document.addEventListener("keydown", callback);
-    return () => document.addEventListener("keydown", callback);
-  }, []);
 
   return (
     <nav className="bg-slate-900 p-2 fixed top-0 w-full z-50 shadow-md">
